@@ -1,0 +1,69 @@
+{% extends "base.html" %} 
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="col-12 mb-3 mb-sm-0">
+  <div class="card mx-2">
+    <div class="card-body">
+      <img src="{{train.image.url}}" class="card-img-top" alt="..." style="width:50%;" />
+      <h1 class="card-title">{{train.name}}</h1>
+      <p class="card-text">{{train.description}}</p>
+      <p>Price : {{train.seat_fair}}</p>
+      <p>
+        Brand: {{train.station}}
+      </p>
+      {% if request.user.is_authenticated %}
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Train Name</th>
+            <th scope="col">Seat Number</th>
+            <th scope="col">Book Now</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for seat in train.seatnumber_set.all %}
+            {%if not seat.is_taken%}
+                <tr>
+                    <th scope="row">{{train.id}}</th>
+                    <td>{{train.train_name}}</td>
+                    <td>{{seat.seat_number}}</td>
+                    {% if request.user.is_authenticated %}
+                    <td><a href="{% url 'seatBook' seat.id %}" class="btn btn-primary">Book Now</a></td>
+                    {% endif %}
+                </tr>
+            {%endif%}
+        {% endfor %}
+          
+        </tbody>
+      </table>
+        {% comment %} <form method="post" action="{% url 'seatBook' seat_no.id %}">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-success">Book Now</button>
+        </form> {% endcomment %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<div class="card m-2">
+  <h5 class="p-3">Total Reviews : {{reviews | length}}</h5>
+  {% for review in reviews %}
+    <div class="card-body border m-2">
+      <p><b>{{review.name}}</b></p>
+      <p>{{review.body}}</p>
+    </div>
+    {% endfor %}
+</div>
+{% if request.user.is_authenticated %}
+    <div class="card m-2">
+    <div class="card-body">
+        <form method = "post">
+            <h1>Add Review</h1>
+            {% csrf_token %}
+            {{review_form | crispy}} 
+            <button class="btn btn-warning">Submit</button>
+        </form> 
+    </div>
+    </div>
+{%endif%}
+{% endblock content %}   

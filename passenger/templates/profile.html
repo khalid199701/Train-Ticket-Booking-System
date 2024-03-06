@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div style="width: 50%; margin: auto">
+    <h2>Booked Seats:</h2>
+    {% if booked_seats %}
+        <ul>
+        {% for seat in booked_seats %}
+            <li>{{ seat.train.train_name }} - Seat {{ seat.seat_number }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No seats booked yet.</p>
+    {% endif %}
+
+    <h2>Balance:</h2>
+    <p>{{ balance }}</p>
+  </div>
+  <div style="width: 50%; margin: auto">
+      <a class="btn btn-primary" href="{% url 'edit_profile' %}">Edit Your Profile</a>
+      <a class="btn btn-primary" href="{% url 'pass_change' %}">Change Password</a>
+  </div>
+  {% csrf_token %}
+  
+{% endblock %}
