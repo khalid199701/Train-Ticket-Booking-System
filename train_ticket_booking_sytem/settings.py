@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-s@)37n68fz+rq+l@bgfvlq^)^f+)c$kjeacb#xyn)u0tp7@x42
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-
+CSRF_TRUSTED_ORIGINS = ['https://train-ticket-booking-system-bj8y.onrender.com/','https://*.127.0.0.1']
 
 # Application definition
 
