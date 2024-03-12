@@ -24,6 +24,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('contactus/', views.contact_us, name='contact_us'),
     path('allprojects/', views.all_projects, name='all_projects'),
+    path('about/', views.about, name='about'),
     path('station/<slug:station_slug>/', views.home, name='station_wise_train'),
     path('passenger/', include('passenger.urls')),
     path('train/', include('train.urls')),

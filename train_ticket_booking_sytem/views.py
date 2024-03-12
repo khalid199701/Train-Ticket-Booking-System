@@ -15,3 +15,6 @@ def contact_us(request):
 
 def all_projects(request):
     return render(request, 'all_projects.html')
+
+def about(request):
+    return render(request, 'about.html')
