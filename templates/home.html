@@ -4,14 +4,13 @@
 <div class="d-flex flex-wrap px-5 pt-3 align-items-center">
     <div class="col-6">
         <h1>Welcome to Our Train Ticket Booking System</h1>
-        <p>Lorem Ipsum is simply dummy 
-            text of the printing and typesetting industry. 
-            Lorem Ipsum has been the industry's standard 
-            dummy text ever since the 1500s, when an unknown 
-            printer took a galley of type and scrambled it to
-            make a type specimen book. It has survived not only
-            five centuries, but also the leap into electronic
-            typesetting, remaining essentially unchanged.
+        <p>In today's fast-paced world, ticket booking systems 
+            have become an integral part of various industries,
+            ranging from transportation and entertainment to 
+            events and sports. These systems facilitate the 
+            efficient reservation and purchase of tickets, 
+            offering convenience to both customers and 
+            businesses alike.
         </p>
     </div>
     <div class="col-2">
@@ -40,7 +39,7 @@
                         <p>
                             {% for i in post.station.all %}
                                 
-                                <button class="btn btn-primary btn-sm m-2" disabled>{{i.title}}</button>
+                                <button class="btn btn-secondary text-decoration-none text-light m-2" disabled>{{i.title}}</button>
                             {% endfor %}
                         </p>
                     </div>
