@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<div class="d-flex flex-wrap px-5 pt-3 align-items-center">
-    <div class="col-6">
-        <h1>Welcome to Our Train Ticket Booking System</h1>
+<div class="border border-info d-flex flex-wrap px-5 pt-3 align-items-center vh-100">
+    <div class="homebanner col-lg-6 col-md-6 col-12 text-center">
+        <h1>Welcome to Train Ticket Booking System</h1>
         <p>In today's fast-paced world, ticket booking systems 
             have become an integral part of various industries,
             ranging from transportation and entertainment to 
@@ -13,29 +13,37 @@
             businesses alike.
         </p>
     </div>
-    <div class="col-2">
-        
-    </div>
     <div class="col-4">
-        <img src="{% static "train.jpg" %}"/>
+        <img style="" src="{% static "train-removebg-preview.png" %}"/>
     </div>
 </div>
-<h5 class="px-5 pt-3">Current Staions Available Here</h5>
-<div class="p-4 m-4">
-    {% for station in station %}
-        <a href="{% url 'station_wise_train' station.slug %}" class="btn btn-secondary text-decoration-none text-light me-2">{{station.name}}</a>
-    {% endfor %}
+<div class="row mt-5 p-5">
+    <h2 class="col-lg-6 col-md-6 col-12 text-center mt-3">Current Staions Available Here :</h2>
+    <div class="col-lg-4 col-md-4 col-12 text-center mt-3">
+        {% for station in station %}
+            <a href="{% url 'station_wise_train' station.slug %}" class="btn btn-primary text-decoration-none text-light me-2">{{station.name}}</a>
+        {% endfor %}
+    </div>
 </div>
+
+<div class="container mt-5 p-5 border border-info">
+    <div class="row">
+      <div class="col text-center">
+        <h2 class="">Top trains: {{data | length}} results found</h2>
+      </div>
+    </div>
+</div>
+  
 <div class="d-flex flex-wrap p-4 m-4">
-    <h4>{{data | length}} results found</h4>
-    <div class="d-flex flex-wrap">
+    
+    <div class="d-flex flex-wrap row">
         {% for post in data %}
-            <div class="col-sm-3 mb-3 mb-sm-0">
+            <div style="" class="mb-3 mb-sm-0 col-lg-3 col-md-2 col-12">
                 <div class="card mx-2 ">
                     <div class="card-body">
-                        <img src="{{post.image.url}}" class="card-img-top" alt="...">
-                        <h5 class="card-title"><a class='text-decoration-none text-dark' href="{% url 'detail_train' post.id%}">{{post.train_name}}</a></h5>
-                        <p class="card-text">{{post.description | truncatewords:10}}</p>
+                        <img style="height:45vh;" src="{{post.image.url}}" class="card-img-top" alt="...">
+                        <h5 class="card-title text-center"><a class='text-decoration-none text-dark' href="{% url 'detail_train' post.id%}">{{post.train_name}}</a></h5>
+                        <p class="card-text text-center">{{post.description | truncatewords:10}}</p>
                         <p>
                             {% for i in post.station.all %}
                                 

@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -6,12 +7,18 @@
     <title>Train Ticket Booking System</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    {% block head %}
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    {% endblock head %}
+    
+    
   </head>
-  <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <body style="width:100%">
+        <nav class="navbar navbar-expand-lg text-dark border border-info px-5">
             <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home' %}">Train Ticket</a>
+            <a class="navbar-brand" href="{% url 'home' %}"><span class="text-info">Book</span>Ticket</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -34,20 +41,20 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         {% if request.user.is_authenticated %}
                             <li class="nav-item">
-                                <a class="nav-link btn btn-secondary text-decoration-none text-light me-2" href="{% url 'profile' %}">Profile</a>
+                                <a class="nav-link text-decoration-none me-2" href="{% url 'profile' %}">Profile</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link btn btn-secondary text-decoration-none text-light me-2" href="{% url 'logout' %}">Logout</a>
+                                <a class="nav-link text-decoration-none me-2" href="{% url 'logout' %}">Logout</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link btn btn-secondary text-decoration-none text-light me-2" href="{% url 'deposit_money' %}">Add Money</a>
+                                <a class="nav-link text-decoration-none me-2" href="{% url 'deposit_money' %}">Add Money</a>
                             </li>
                         {% else %}
                             <li class="nav-item">
-                                <a class="nav-link btn btn-secondary text-decoration-none text-light me-2" href="{% url 'register' %}">Register</a>
+                                <a class="nav-link btn btn-info border border-info text-decoration-none me-2" href="{% url 'register' %}">Register</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link btn btn-secondary text-decoration-none text-light me-2" href="{% url 'login' %}">Login</a>
+                                <a class="nav-link btn btn-info border border-info text-decoration-none me-2" href="{% url 'login' %}">Login</a>
                             </li>
                         {% endif %}
                     </ul>
@@ -63,8 +70,8 @@
         {% block content %}
         
         {% endblock content %}
-        <footer class="mt-5 bg-dark text-light align-content-center">
-            <div class="container py-4">
+        <footer class="mt-5 bg-primary text-light align-content-center text-center">
+            <div class="container py-4 hello">
                 <div class="row">
                 <div class="col-md-4">
                     <h5>About Us</h5>
@@ -85,7 +92,7 @@
                 </div>
                 </div>
             </div>
-            <div class="text-center py-3 bg-secondary">
+            <div class="text-center text-dark py-3 bg-light">
                 &copy; Khalid Mahmud 2024
             </div>
         </footer>
