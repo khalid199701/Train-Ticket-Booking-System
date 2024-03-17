@@ -8,25 +8,22 @@ class UserRegistrationForm(UserCreationForm):
     username = forms.CharField(max_length=20)
     first_name = forms.CharField(max_length=20)
     last_name = forms.CharField(max_length=20)
-    balance = forms.DecimalField(max_digits=12, decimal_places=2, initial=0)
     email = forms.EmailField()
     nid = forms.IntegerField()
 
     class Meta:
         model = User
-        fields = ['username', 'password1', 'password2', 'first_name', 'last_name', 'email', 'balance', 'nid']
+        fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2', 'nid']
 
     def save(self, commit=True):
         user = super().save(commit=False)
         user.email = self.cleaned_data['email']
-        user.balance = self.cleaned_data['balance']
         user.nid = self.cleaned_data['nid']
         
         if commit:
             user.save()
             Passenger.objects.create(
                 user=user, 
-                balance=self.cleaned_data['balance'],
                 nid=self.cleaned_data['nid'],
             )
 

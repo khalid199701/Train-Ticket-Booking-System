@@ -1,10 +1,38 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
+{% block head %}
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'passstyle.css' %}">
+
+{% endblock head %}
 {% block content %}
-    <form style="width: 50%; margin: auto" method = "post">
-        <h1>Register page</h1>
-        {% csrf_token %}
-        {{form | crispy}}
-        <button class="btn btn-warning mb-5">Register</button>
-    </form>
+    {% if messages %}
+    {% for m in messages %}
+        <small {% if m.tags %} class="{{m.tags}}" {% endif %} >{{m}}</small>
+    {% endfor %}
+    {% endif %}
+    <div class="hello container p-5 border border-dark-subtle" style="background-image: url(/passenger/static/ticket_registration.jpg);">
+        <div class="row align-items-center">
+            <div class="col-lg-6 col-md-6 col-12 text-center">
+                <h1>Join Us</h1>
+                <h4>Subscribe to BookTicket<br> For getting ticket easily</h4>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+                <form method="post" style="width: 80%; margin: auto" novalidate>
+                    <!--{{form | crispy}}-->
+                        <h1>Signup page</h1>
+                        {% csrf_token %}
+                        {% for fm in form %}
+                            {{fm.label_tag}}
+                            {{fm}}
+                            {{fm.errors | striptags}}
+                        {% endfor %}
+                        <br/>
+                        <button class= "btn btn-primary" type="submit">Submit</button>
+                        <small>Already have an account <a href="{% url 'login' %}">login</a></small>
+                    </form>
+            </div>
+        </div>
+    </div>
+
 {% endblock content %}

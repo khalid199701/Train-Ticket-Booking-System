@@ -1,4 +1,4 @@
-
+{% load static %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -8,17 +8,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     {% block head %}
-        {% load static %}
-        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+        
+
     {% endblock head %}
     
     
   </head>
   <body style="width:100%">
-        <nav class="navbar navbar-expand-lg text-dark border border-info px-5">
+        <nav class="navbar navbar-expand-lg text-dark border border-bg-secondary px-5">
             <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home' %}"><span class="text-info">Book</span>Ticket</a>
+            <a class="navbar-brand fs-2" href="{% url 'home' %}"><span class="text-info">Book</span>Ticket</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -41,20 +42,20 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         {% if request.user.is_authenticated %}
                             <li class="nav-item">
-                                <a class="nav-link text-decoration-none me-2" href="{% url 'profile' %}">Profile</a>
+                                <a class="nav-link btn btn-info border border-info text-decoration-none mb-2 me-2" href="{% url 'profile' %}">Profile</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-decoration-none me-2" href="{% url 'logout' %}">Logout</a>
+                                <a class="nav-link btn btn-info border border-info text-decoration-none mb-2 me-2" href="{% url 'logout' %}">Logout</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-decoration-none me-2" href="{% url 'deposit_money' %}">Add Money</a>
+                                <a class="nav-link btn btn-danger border border-info text-decoration-none mb-2 me-2" href="{% url 'deposit_money' %}">Add Money</a>
                             </li>
                         {% else %}
                             <li class="nav-item">
-                                <a class="nav-link btn btn-info border border-info text-decoration-none me-2" href="{% url 'register' %}">Register</a>
+                                <a class="nav-link btn btn-info border border-info text-decoration-none mb-2 me-2" href="{% url 'register' %}">Register</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link btn btn-info border border-info text-decoration-none me-2" href="{% url 'login' %}">Login</a>
+                                <a class="nav-link btn btn-info border border-info text-decoration-none mb-2 me-2" href="{% url 'login' %}">Login</a>
                             </li>
                         {% endif %}
                     </ul>
@@ -62,6 +63,7 @@
             </div>
             </div>
         </nav>
+        
         {% for i in messages %}
             <h3 class= "text-{{i.tags}}">
                 {{i}}
@@ -70,17 +72,17 @@
         {% block content %}
         
         {% endblock content %}
-        <footer class="mt-5 bg-primary text-light align-content-center text-center">
-            <div class="container py-4 hello">
+        <footer class="mt-5 bg-primary text-light align-content-center text-left">
+            <div class="container py-4">
                 <div class="row">
                 <div class="col-md-4">
-                    <h5>About Us</h5>
-                    <p>A well-designed ticket booking system streamlines the booking process, enhances customer satisfaction, and optimizes revenue generation for businesses.</p>
+                    <h5>About BookTicket</h5>
+                    <p>Here you can search for airline tickets fast and easily. Using the current station, you can select your reuired destination.</p>
                 </div>
                 <div class="col-md-4">
-                    <h5>Contact Us</h5>
-                    <p>Email: ayon201401@gmail.com</p>
-                    <p>Phone: +123456789</p>
+                    <h5>Other pages</h5>
+                    <p><a class="nav-link" aria-current="page" href="{% url 'contact_us' %}">Contact Us</a></p>
+                    <p><a class="nav-link" aria-current="page" href="{% url 'about' %}">About Us</a></p>
                 </div>
                 <div class="col-md-4">
                     <h5>Follow Us</h5>
@@ -96,7 +98,6 @@
                 &copy; Khalid Mahmud 2024
             </div>
         </footer>
-        
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   </body>
 </html>

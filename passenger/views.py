@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import FormView
 from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
 from .forms import UserRegistrationForm, UserUpdateForm, ChangeUserForm
 from django.urls import reverse_lazy
 from django.contrib import messages
@@ -119,8 +120,8 @@ class DepositMoneyView(TransactionCreateMixin):
 
     def form_valid(self, form):
         amount = form.cleaned_data.get('amount')
-        # account = self.request.user
-        passenger = Passenger.objects.get(user = self.request.user)
+        user = get_object_or_404(User, user=self.request.user)
+        passenger = get_object_or_404(Passenger, user=user)
         transaction = Transaction.objects.create(account=passenger, amount=amount)
         passenger.balance += amount
         passenger.save(

@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
 class Passenger(models.Model):
-    user = models.OneToOneField(User, related_name = 'account', on_delete = models.CASCADE)
+    user = models.ForeignKey(User, related_name = 'account', on_delete = models.CASCADE)
     nid = models.IntegerField(unique = True, null = True, blank = True)
     balance = models.DecimalField(default = 0, decimal_places = 2, max_digits = 12)
     def __str__(self):
