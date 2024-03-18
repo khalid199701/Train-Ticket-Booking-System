@@ -46,9 +46,9 @@
         <span class="visually-hidden">Next</span>
       </button>
 </div>
-<div class="mx-3 border border-info d-flex flex-wrap px-5 pt-3 align-items-center vh-100">
+<div class="mx-3 border border-info d-flex flex-wrap mb-4 px-5 pt-3 align-items-center vh-100">
     <div class="homebanner col-lg-6 col-md-6 col-12">
-        <h1  text-center>Our BookTicket</h1>
+        <h1 class="">Our BookTicket</h1>
         <br>
         <br>
         <p>In today's fast-paced world, ticket booking systems 
@@ -59,19 +59,23 @@
             offering convenience to both customers and 
             businesses alike.
         </p>
+        <a class="btn btn-primary border border-info text-decoration-none mb-2 me-2" href="{% url 'register' %}">Register now</a>
     </div>
-    <div class="col-lg-6 col-md-6 col-12">
-        <img style="" src="{% static "train-removebg-preview.png" %}"/>
-    </div>
-</div>
-<div class="row mt-5 p-5">
-    <h2 class="col-lg-6 col-md-6 col-12 text-center mt-3">Current Staions Available Here :</h2>
-    <div class="col-lg-4 col-md-4 col-12 text-center mt-3">
-        {% for station in station %}
-            <a href="{% url 'station_wise_train' station.slug %}" class="btn btn-primary text-decoration-none text-light me-2">{{station.name}}</a>
-        {% endfor %}
+    <div class="col-lg-6 col-md-6 col-12 text-center">
+        <img class="img-fluid max-width-100" src="{% static "train-removebg-preview.png" %}" alt="Train Image"/>
     </div>
 </div>
+<div class="container mb-sm-1 mb-md-1 mt-5 p-5">
+    <div class="row">
+        <h2 class="col-lg-6 col-md-6 col-12 text-center mt-3">Current Staions Available Here :</h2>
+        <div class="col-lg-4 col-md-4 col-12 text-center mt-3">
+            {% for station in station %}
+                <a href="{% url 'station_wise_train' station.slug %}" class="btn btn-primary text-decoration-none text-light">{{station.name}}</a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+    
 
 <div class="container mt-5 p-5 border border-info">
     <div class="row">
@@ -85,8 +89,8 @@
     
     <div class="row">
         {% for post in data %}
-            <div style="" class="mb-3 mb-sm-0 col-lg-3 col-md-3 col-12">
-                <div class="card mx-2 ">
+            <div class="mb-3 mb-sm-1 col-lg-3 col-md-6 col-12">
+                <div class="card  h-100">
                     <div class="card-body">
                         <img style="height:45vh;" src="{{post.image.url}}" class="card-img-top" alt="...">
                         <h5 class="card-title text-center"><a class='text-decoration-none text-dark' href="{% url 'detail_train' post.id%}">{{post.train_name}}</a></h5>
@@ -96,7 +100,6 @@
                         </div>
                         <p>
                             {% for i in post.station.all %}
-                                
                                 <button class="btn btn-secondary text-decoration-none text-light m-2" disabled>{{i.title}}</button>
                             {% endfor %}
                         </p>
@@ -125,7 +128,7 @@
         <br>
         
         <div class="row">
-            <div class="col-12 col-md-6 col-lg-3">
+            <div class="col-12 col-md-6 col-lg-3 mb-sm-1 mb-md-1">
                 <div class="card text-center">
                     <div class="card-body">
                         <img src="{% static "team-1.jpg" %}" alt="" class="img-fluid rounded-circle">

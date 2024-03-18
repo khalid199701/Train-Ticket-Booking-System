@@ -14,7 +14,8 @@ def contact_us(request):
     return render(request, 'contact_us.html')
 
 def all_projects(request):
-    return render(request, 'all_projects.html')
+    data = Train.objects.all()
+    return render(request, 'all_projects.html', {'data': data})
 
 def about(request):
     return render(request, 'about.html')

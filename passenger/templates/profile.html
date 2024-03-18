@@ -1,25 +1,39 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <div style="width: 50%; margin: auto">
-    <h2>Booked Seats:</h2>
-    {% if booked_seats %}
-        <ul>
-        {% for seat in booked_seats %}
-            <li>{{ seat.train.train_name }} - Seat {{ seat.seat_number }}</li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>No seats booked yet.</p>
-    {% endif %}
+<div class="container mt-5" style="height:49vh">
+  <div class="row">
+      <div class="col-md-6 mx-auto">
+          <div class="card">
+              <div class="card-body">
+                  <h2 class="card-title">Your Booked Seats:</h2>
+                  {% if booked_seats %}
+                      <ul class="list-group">
+                          {% for seat in booked_seats %}
+                              <li class="list-group-item">{{ seat.train.train_name }} - Seat {{ seat.seat_number }}</li>
+                          {% endfor %}
+                      </ul>
+                  {% else %}
+                      <p>No seats booked yet.</p>
+                  {% endif %}
+              </div>
+          </div>
+      </div>
+      <div class="col-md-6 mx-auto mt-3 mt-md-0">
+          <div class="card">
+              <div class="card-body">
+                  <h2 class="card-title">Your Account Balance:</h2>
+                  <p class="card-text">{{ balance }} tk</p>
+                  <div class="d-grid gap-2">
+                      <a class="btn btn-primary" href="{% url 'edit_profile' %}">Edit Your Profile</a>
+                      <a class="btn btn-primary mt-2" href="{% url 'pass_change' %}">Change Password</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
 
-    <h2>Balance:</h2>
-    <p>{{ balance }}</p>
-  </div>
-  <div style="width: 50%; margin: auto">
-      <a class="btn btn-primary" href="{% url 'edit_profile' %}">Edit Your Profile</a>
-      <a class="btn btn-primary" href="{% url 'pass_change' %}">Change Password</a>
-  </div>
   {% csrf_token %}
   
 {% endblock %}
