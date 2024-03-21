@@ -58,7 +58,7 @@ class UserRegistrationView(FormView):
         uid = urlsafe_base64_encode(force_bytes(user.pk))
         token = default_token_generator.make_token(user)
         current_site = get_current_site(self.request)
-        confirm_link = f"http://127.0.0.1:8000/passenger/active/{uid}/{token}"
+        confirm_link = f"https://train-ticket-booking-system-bj8y.onrender.com/passenger/active/{uid}/{token}"
 
         email_subject = "Confirm Your Email"
         email_body = render_to_string('confirm_email.html', {'confirm_link': confirm_link})
@@ -66,7 +66,7 @@ class UserRegistrationView(FormView):
         email = EmailMultiAlternatives(email_subject, email_body, to=[to_email])
         email.send()
         message = "Check your mail for confirmation"
-        return HttpResponseRedirect("http://127.0.0.1:8000/passenger/login/")
+        return HttpResponseRedirect("https://train-ticket-booking-system-bj8y.onrender.com/passenger/login/")
 
 
 def activate(request, uid64, token):
